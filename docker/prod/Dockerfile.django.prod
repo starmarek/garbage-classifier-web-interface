@@ -1,0 +1,44 @@
+FROM python:3.8.5 as django_builder
+
+WORKDIR /app
+
+COPY Pipfile* ./
+
+ENV PIPENV_VENV_IN_PROJECT=1
+RUN mkdir .venv
+RUN pip install pipenv
+RUN pipenv sync
+
+########################################
+FROM node:stretch as vue_builder
+
+WORKDIR /app
+
+COPY .git/ ./.git/
+COPY package.json .
+COPY yarn.lock .
+COPY src/ ./src/
+COPY public/ ./public/
+COPY vue.config.js .
+RUN yarn install && yarn build
+
+#########################################
+FROM python:3.8.5
+
+WORKDIR /app
+
+RUN apt update -yqq && \
+    apt install -yqq netcat
+
+COPY backend/ ./backend/
+COPY manage.py .
+COPY --from=django_builder /app/.venv/ ./.venv/
+COPY Pipfile* ./
+COPY docker/prod/django_setup_prod.sh docker/prod/django_setup_prod.sh
+
+COPY --from=vue_builder /app/dist/ ./vue-dist/
+COPY --from=vue_builder /app/node_modules/ ./node_modules/
+
+RUN pip install pipenv
+RUN pipenv run python manage.py collectstatic --noinput
+RUN cp ./vue-dist/index.html ./dist/static/

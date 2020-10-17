@@ -1,0 +1,91 @@
+image: python:3.7
+
+stages:
+    - build
+    - test
+    - deploy
+
+variables:
+    PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+    WORKON_HOME: "$CI_PROJECT_DIR/venv"
+
+default:
+    before_script:
+        - pip install pipenv
+
+install_pipenv:
+    stage: build
+    script:
+        - apt update -yqq
+        - apt install -yqq libldap2-dev libsasl2-dev libssl-dev python3.7-dev
+        - env VIRTUALENV_COPIES=1 pipenv sync --dev
+    artifacts:
+        paths:
+            - .cache/pip
+            - venv/
+
+install_node:
+    image: node
+    stage: build
+    before_script: []
+    script:
+        - yarn install
+    artifacts:
+        paths:
+            - node_modules/
+
+prettier:
+    image: node
+    stage: test
+    before_script: []
+    dependencies: 
+        - install_node
+    script:
+        - yarn run check-format
+
+eslint:
+    image: node
+    stage: test
+    dependencies: 
+        - install_node
+    before_script:
+        - yarn run check-eslint-config  
+    script:
+        - yarn run lint
+
+flake8:
+    stage: test
+    dependencies: 
+        - install_pipenv
+    script:
+        - pipenv run flake8
+
+black:
+    stage: test
+    dependencies: 
+        - install_pipenv
+    script:
+        - pipenv run black . --check
+
+deploy:
+    image: ubuntu
+    stage: deploy
+    dependencies: []
+    before_script:
+        - "which ssh-agent || { apt update -y && apt install openssh-client -y; } > /dev/null"
+        - apt install rsync -y > /dev/null
+        - eval $(ssh-agent -s)
+        - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+        - mkdir -p ~/.ssh
+        - chmod 700 ~/.ssh
+        - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    script:
+        - ssh $PROD_SERVER_USER@$PROD_SERVER_IP "docker-compose -f garbage/docker-compose.prod.yml down --rmi all && docker volume rm garbage_static_files || true"
+        - ssh $PROD_SERVER_USER@$PROD_SERVER_IP "rm -rf garbage/ || true"
+        - rsync -azvh . $PROD_SERVER_USER@$PROD_SERVER_IP:garbage/
+        - ssh $PROD_SERVER_USER@$PROD_SERVER_IP "cp .env garbage/ && docker-compose -f garbage/docker-compose.prod.yml build --force-rm --no-cache && docker-compose -f garbage/docker-compose.prod.yml up -d --remove-orphans"
+    # only:
+    #     - tags
+    # except:
+    #     - branches
+    when: manual

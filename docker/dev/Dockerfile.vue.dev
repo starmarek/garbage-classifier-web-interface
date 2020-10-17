@@ -1,0 +1,7 @@
+FROM node:stretch
+
+WORKDIR /app
+
+COPY . .
+
+RUN yarn install

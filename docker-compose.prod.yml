@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres
+    env_file:
+      - ./.env
+    volumes:
+      - db_data:/var/lib/postgresql/data/
+    restart: always
+
+  django:
+    build:
+      context: .
+      dockerfile: docker/prod/Dockerfile.django.prod
+    command: ./docker/prod/django_setup_prod.sh
+    env_file:
+      - ./.env
+    volumes:
+      - static_files:/app/dist
+    expose:
+      - 8000
+    depends_on:
+      - db
+    restart: always
+
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/prod/Dockerfile.nginx.prod
+    volumes:
+      - static_files:/app/dist
+    ports:
+      - 80:80
+    depends_on:
+      - django
+    restart: always
+
+volumes:
+  db_data:
+  static_files:
