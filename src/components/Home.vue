@@ -5,13 +5,8 @@
                 <div class="container has-text-centered">
                     <transition name="slide-down">
                         <h1 v-if="showElements" class="title is-size-1 is-spaced">
-                            ManTLE
+                            Garbage Classifier
                         </h1>
-                    </transition>
-                    <transition name="slide-up-200ms">
-                        <h3 v-if="showElements" class="subtitle">
-                            Manage TestLines Easily
-                        </h3>
                     </transition>
                 </div>
             </div>

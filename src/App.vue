@@ -11,8 +11,6 @@
 <script>
 // @ is an alias to /src
 import Navbar from "@/components/Navbar.vue";
-import router from "@/router";
-import store from "@/store"; // your vuex store
 
 export default {
     name: "Home",
