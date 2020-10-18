@@ -16,8 +16,6 @@ default:
 install_pipenv:
     stage: build
     script:
-        - apt update -yqq
-        - apt install -yqq libldap2-dev libsasl2-dev libssl-dev python3.7-dev
         - env VIRTUALENV_COPIES=1 pipenv sync --dev
     artifacts:
         paths:

@@ -15,7 +15,6 @@ Vue.config.productionTip = false;
 
 Vue.use(Buefy);
 
-
 const vue = new Vue({
     router,
     store,

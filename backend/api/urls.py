@@ -4,7 +4,7 @@ from rest_framework import routers
 from .views.vue_view import IndexTemplateView
 
 router = routers.DefaultRouter()
-#router.register("tlconfig", TestlineViewSet)
+# router.register("tlconfig", TestlineViewSet)
 
 urlpatterns = [
     path("api/", include(router.urls)),
