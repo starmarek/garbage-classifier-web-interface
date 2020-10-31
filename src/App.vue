@@ -1,21 +1,24 @@
 <template>
-    <div id="app">
+    <div class="fix_footer" id="app">
         <Navbar />
         <div class="content">
             <div class="toast-space"></div>
             <router-view />
         </div>
+        <Footer />
     </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import Navbar from "@/components/Navbar.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
     name: "Home",
     components: {
         Navbar,
+        Footer,
     },
 };
 </script>
@@ -80,6 +83,16 @@ $colors: (
         $danger-invert,
     ),
 );
+
+.fix_footer {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+}
 
 // Links
 $link: $primary;

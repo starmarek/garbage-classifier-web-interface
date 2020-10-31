@@ -121,17 +121,6 @@
                 </div>
             </div>
         </section>
-
-        <footer class="footer">
-            <div class="content has-text-centered">
-                <p class="subtitle is-6 has-text-grey-light is-unselectable">
-                    Icons by
-                    <a target="_blank" href="https://materialdesignicons.com/"
-                        >MaterialDesignIcons</a
-                    >
-                </p>
-            </div>
-        </footer>
     </div>
 </template>
 
