@@ -2,7 +2,7 @@
     <b-navbar class="is-spaced has-shadow" type="is-primary" wrapper-class="container">
         <template slot="brand">
             <b-navbar-item :to="{ path: '/' }" tag="router-link">
-                <b-icon :style="{ margin: '6px' }" icon="account-hard-hat"></b-icon>
+                <b-icon :style="{ margin: '6px' }" icon="recycle"></b-icon>
             </b-navbar-item>
         </template>
         <template slot="start">
