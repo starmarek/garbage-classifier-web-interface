@@ -65,6 +65,13 @@ black:
     script:
         - pipenv run black . --check
 
+isort:
+    stage: test
+    dependencies: 
+        - install_pipenv
+    script:
+        - pipenv run isort . --check
+
 deploy:
     image: ubuntu
     stage: deploy
@@ -82,8 +89,4 @@ deploy:
         - ssh $PROD_SERVER_USER@$PROD_SERVER_IP "rm -rf garbage/ || true"
         - rsync -azvh . $PROD_SERVER_USER@$PROD_SERVER_IP:garbage/
         - ssh $PROD_SERVER_USER@$PROD_SERVER_IP "cp .env garbage/ && docker-compose -f garbage/docker-compose.prod.yml build --force-rm --no-cache && docker-compose -f garbage/docker-compose.prod.yml up -d --remove-orphans"
-    # only:
-    #     - tags
-    # except:
-    #     - branches
     when: manual
