@@ -1,8 +1,8 @@
 <template>
-    <b-navbar class="is-spaced has-shadow" type="is-primary" wrapper-class="container">
+    <b-navbar class="has-shadow" type="is-primary" wrapper-class="container">
         <template slot="brand">
             <b-navbar-item :to="{ path: '/' }" tag="router-link">
-                <b-icon :style="{ margin: '6px' }" icon="recycle"></b-icon>
+                <img src="@/assets/logo_text.png" :style="{ minHeight: '70px' }" />
             </b-navbar-item>
         </template>
         <template slot="start">
