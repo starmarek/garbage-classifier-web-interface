@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <section class="hero is-primary is-bold is-relative">
+        <section class="hero is-primary is-relative">
             <div class="hero-body">
                 <div class="container has-text-centered">
                     <transition name="slide-down">
@@ -139,11 +139,6 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-@import "@/styles/colors.scss";
-
-section.hero.is-primary {
-    background-image: linear-gradient($primary, $secondary);
-}
 @keyframes disappear {
     0% {
         opacity: 1;
