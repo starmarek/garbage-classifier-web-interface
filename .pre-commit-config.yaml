@@ -21,12 +21,14 @@ repos:
 
           - id: eslint
             name: eslint
-            entry: eslint
+            entry: node_modules/.bin/eslint
             language: node
-            types: [file, vue, javascript]
+            files: \.(vue|js)
+            types: [file]
 
           - id: prettier
             name: prettier
-            entry: prettier -w
+            entry: node_modules/.bin/prettier -w
             language: node
-            types: [file, vue, javascript]
+            files: \.(vue|js)
+            types: [file]
