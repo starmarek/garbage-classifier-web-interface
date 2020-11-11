@@ -1,0 +1,32 @@
+repos:
+    - repo: local
+      hooks:
+          - id: black
+            name: black
+            entry: black
+            language: python
+            types: [file, python]
+
+          - id: flake8
+            name: flake8
+            entry: flake8
+            language: python
+            types: [file, python]
+
+          - id: isort
+            name: isort
+            entry: isort
+            language: python
+            types: [file, python]
+
+          - id: eslint
+            name: eslint
+            entry: eslint
+            language: node
+            types: [file, vue, javascript]
+
+          - id: prettier
+            name: prettier
+            entry: prettier -w
+            language: node
+            types: [file, vue, javascript]
