@@ -23,7 +23,7 @@ install_pipenv:
             - venv/
 
 install_node:
-    image: node
+    image: node:14.13.0-stretch
     stage: build
     before_script: []
     script:
@@ -33,7 +33,7 @@ install_node:
             - node_modules/
 
 prettier:
-    image: node
+    image: node:14.13.0-stretch
     stage: test
     before_script: []
     dependencies: 
@@ -42,7 +42,7 @@ prettier:
         - yarn run check-format
 
 eslint:
-    image: node
+    image: node:14.13.0-stretch
     stage: test
     dependencies: 
         - install_node
@@ -73,7 +73,7 @@ isort:
         - pipenv run isort . --check
 
 deploy:
-    image: ubuntu
+    image: ubuntu:focal-20201008
     stage: deploy
     dependencies: []
     before_script:
