@@ -4,6 +4,7 @@ node_modules
 db.sqlite3
 /dist
 /venv
+/backend/media
 __pycache__
 dump.rdb
 

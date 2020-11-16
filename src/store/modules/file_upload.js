@@ -11,35 +11,20 @@ const getters = {
 };
 
 const actions = {
-    loadFiles({ commit }) {
-        api.get("files/")
-            .then((data) => {
-                let rowData = data.data;
-                commit("SET_FILES", rowData);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    },
-    postFiles({ dispatch, commit }, files) {
-        const config = {
-            onUploadProgress(e) {
-                // eslint-disable-next-line no-unused-vars
-                var percentCompleted = Math.round((e.loaded * 5000) / e.total);
-            },
-        };
+    postFiles({ commit }, files) {
         try {
-            api.post("files/", files, config, {
+            console.log(files);
+            for (var key of files.keys()) {
+                console.log(key);
+            }
+            api.post("predict", files, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
-            })
-                .then(() => {
-                    commit("POST_FILE", files);
-                })
-                .then(() => {
-                    dispatch("loadFiles");
-                });
+            }).then((resp) => {
+                console.log(resp)
+                commit("POST_FILE", files);
+            });
         } catch (error) {
             console.log(error);
         }
@@ -49,9 +34,6 @@ const actions = {
 const mutations = {
     POST_FILE(state, newFile) {
         state.rowData.push(newFile);
-    },
-    SET_FILES(state, files) {
-        state.rowData = files;
     },
 };
 

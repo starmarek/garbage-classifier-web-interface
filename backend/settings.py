@@ -27,9 +27,6 @@ SECRET_KEY = os.getenv("SECRET_KEY", default="very_secret")
 DEBUG = os.getenv("DEBUG") == "True"
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
 
-# if DEBUG:
-#     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -64,6 +61,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "backend.api",
+    "backend.tfpredict",
 ]
 
 MIDDLEWARE = [
@@ -152,3 +150,6 @@ STATIC_URL = "/static/"
 # Place static in the same location as webpack build files
 STATIC_ROOT = os.path.join(BASE_DIR, "..", "dist", "static")
 STATICFILES_DIRS = ["vue-dist/static"]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
