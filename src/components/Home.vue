@@ -72,10 +72,45 @@ export default {
                 });
             }
         },
+        validateFiles() {
+            var files_size = 0;
+            var file_size_error = false;
+            var file_type_error = false;
+            var dialog_message = "";
+
+            for (const file of this.dropFiles) {
+                files_size += file.size;
+                if (file.type == "image/heif") {
+                    file_type_error = true;
+                    dialog_message = "<li>-- HEIC files are not supported</li>";
+                }
+            }
+            if (files_size > 20000000) {
+                file_size_error = true;
+                dialog_message =
+                    dialog_message +
+                    "<li>-- Overall files size cannot exceed 20MB</li>";
+            }
+
+            if (file_type_error || file_size_error) {
+                Dialog.alert({
+                    title: "There are some errors with your files",
+                    message: "<ul>" + dialog_message + "</ul>",
+                    type: "is-danger",
+                    hasIcon: true,
+                    icon: "alert-circle-outline",
+                });
+                throw 1;
+            }
+        },
         submitUserFiles() {
+            try {
+                this.validateFiles();
+            } catch (error) {
+                return;
+            }
             var fd = new FormData();
-            for (var i = 0; i < this.dropFiles.length; i++) {
-                var file_to_append = this.dropFiles[i];
+            for (const file_to_append of this.dropFiles) {
                 fd.append(file_to_append.name, file_to_append);
             }
             this.$store.dispatch("postFiles", fd);
