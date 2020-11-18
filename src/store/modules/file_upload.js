@@ -22,7 +22,7 @@ const actions = {
                     "Content-Type": "multipart/form-data",
                 },
             }).then((resp) => {
-                console.log(resp)
+                console.log(resp);
                 commit("POST_FILE", files);
             });
         } catch (error) {
