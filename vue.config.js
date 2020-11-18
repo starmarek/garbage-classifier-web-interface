@@ -6,6 +6,7 @@ process.env.VUE_APP_GIT_TAG = gitDescribeSync().tag;
 module.exports = {
     outputDir: "dist",
     assetsDir: "static",
+    runtimeCompiler: true,
     devServer: {
         proxy: {
             "/api*": {

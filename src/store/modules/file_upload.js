@@ -1,17 +1,17 @@
 import { api } from "@/services/api";
 
 const state = {
-    rowData: [],
+    status: "",
+    prediction: "",
 };
 
 const getters = {
-    // isAuthenticated: (state) => !!state.access_token,
-    // authStatus: (state) => state.status,
-    // refreshTok: (state) => state.refresh_token,
+    predictStatus: (state) => state.status,
 };
 
 const actions = {
     postFiles({ commit }, files) {
+        commit("PREDICTION_REQUEST");
         try {
             api.post("predict", files, {
                 timeout: 10000,
@@ -20,7 +20,8 @@ const actions = {
                 },
             }).then((resp) => {
                 console.log(resp);
-                commit("POST_FILE", files);
+                console.log(resp.data);
+                commit("PREDICTION_SUCCESS", resp.data);
             });
         } catch (error) {
             console.log(error);
@@ -29,8 +30,12 @@ const actions = {
 };
 
 const mutations = {
-    POST_FILE(state, newFile) {
-        state.rowData.push(newFile);
+    PREDICTION_SUCCESS(state, prediction) {
+        state.prediction = prediction;
+        state.status = "success";
+    },
+    PREDICTION_REQUEST(state) {
+        state.status = "request";
     },
 };
 

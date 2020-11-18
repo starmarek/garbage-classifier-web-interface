@@ -45,6 +45,37 @@
 
 <script>
 import { DialogProgrammatic as Dialog } from "buefy";
+const ModalForm = {
+    props: ["dropFiles", "getURL"],
+    template: `
+            <form action="">
+                <div class="modal-card" style="width: auto">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">{{ $parent.$store.getters.predictStatus == 'request' ? 'Predicting your images 🔎' : 'Your predictions 🎉' }}</p>
+                    </header>
+                    <section class="modal-card-body">
+                        <div v-if="$parent.$store.getters.predictStatus == 'request'"  style=" display: flex; flex-direction: row">
+                            <span v-for="i in dropFiles.length" :key="i" style="margin: 0 auto">
+                                <div style="margin: 20px">
+                                    <b-skeleton width="170px" height="120px"></b-skeleton>
+                                </div>
+                            </span>
+                        </div>
+                        <div v-else  style=" display: flex; flex-direction: row">
+                            <span v-for="file in dropFiles" style="margin: 0 auto">
+                                <div style="margin: 20px">
+                                    <img :src="getURL(file)"/>
+                                </div>
+                            </span>
+                        </div>
+                    </section>
+                    <footer class="modal-card-foot">
+                        <button class="button" type="button" @click="$emit('close')">Close</button>
+                    </footer>
+                </div>
+            </form>
+        `,
+};
 export default {
     name: "Home",
     data() {
@@ -114,6 +145,17 @@ export default {
                 fd.append(file_to_append.name, file_to_append);
             }
             this.$store.dispatch("postFiles", fd);
+            this.$buefy.modal.open({
+                parent: this,
+                props: {
+                    dropFiles: this.dropFiles,
+                    getURL: this.getURL,
+                },
+                component: ModalForm,
+                hasModalCard: true,
+                trapFocus: true,
+                width: "100%",
+            });
         },
     },
 };
