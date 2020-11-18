@@ -13,11 +13,8 @@ const getters = {
 const actions = {
     postFiles({ commit }, files) {
         try {
-            console.log(files);
-            for (var key of files.keys()) {
-                console.log(key);
-            }
             api.post("predict", files, {
+                timeout: 10000,
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },

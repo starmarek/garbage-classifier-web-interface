@@ -74,14 +74,9 @@ export default {
         },
         submitUserFiles() {
             var fd = new FormData();
-            console.log(fd);
             for (var i = 0; i < this.dropFiles.length; i++) {
                 var file_to_append = this.dropFiles[i];
-                console.log(file_to_append);
                 fd.append(file_to_append.name, file_to_append);
-            }
-            for (var key of fd.keys()) {
-                console.log(key);
             }
             this.$store.dispatch("postFiles", fd);
         },
