@@ -40,11 +40,20 @@
                 </div>
             </div>
         </section>
+        <div class="has-text-centered">
+            <p class="ititle" style="margin: 50px; font-weight: bold; font-size: 200%">
+                Or choose one from our gallery!
+            </p>
+        </div>
+
+        <home-tiles />
     </div>
 </template>
 
 <script>
 import { DialogProgrammatic as Dialog } from "buefy";
+import HomeTiles from "./HomeTiles";
+
 const ModalForm = {
     props: ["dropFiles", "getURL"],
     template: `
@@ -79,6 +88,9 @@ const ModalForm = {
 };
 export default {
     name: "Home",
+    components: {
+        "home-tiles": HomeTiles,
+    },
     data() {
         return {
             dropFiles: [],
