@@ -11,7 +11,6 @@ def create_files_batch(directory):
     batch_holder = np.zeros((batch_size, img_size, img_size, 3))
 
     for i, img in enumerate(os.listdir(directory)):
-        print(os.listdir(directory), flush=True)
         img = load_img(
             os.path.join(directory, img),
             target_size=(

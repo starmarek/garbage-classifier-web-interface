@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 
+from tensorflow.keras.models import load_model
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 SETTINGS_DIR = os.path.abspath(__file__)
 BASE_DIR = os.path.dirname(SETTINGS_DIR)
@@ -153,3 +155,5 @@ STATICFILES_DIRS = ["vue-dist/static"]
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+MODEL = load_model(f"{BASE_DIR}/tfpredict/model/model.hdf5")
