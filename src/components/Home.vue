@@ -181,7 +181,7 @@ export default {
     width: 500px;
     max-width: 500px;
     height: 470px;
-    max-heigt: 470px;
+    max-height: 470px;
     position: relative;
 }
 .submit-button {
