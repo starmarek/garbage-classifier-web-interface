@@ -13,7 +13,7 @@ from .utils.predict import predict_files
 class Predict(APIView):
     def post(self, request):
         folder_name = f"{sett.MEDIA_ROOT}/{time.time()}"
-        os.mkdir(folder_name)
+        os.makedirs(folder_name)
         for key, value in request.FILES.items():
             with open(f"{folder_name}/{key}", "wb+") as destination:
                 for chunk in value.chunks():
