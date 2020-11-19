@@ -57,7 +57,7 @@ const ModalForm = {
                         <div v-if="$parent.$store.getters.predictStatus == 'request'"  style=" display: flex; flex-direction: row">
                             <span v-for="i in dropFiles.length" :key="i" style="margin: 0 auto">
                                 <div style="margin: 20px">
-                                    <b-skeleton width="170px" height="120px"></b-skeleton>
+                                    <b-skeleton width="200px" height="150px"></b-skeleton>
                                 </div>
                             </span>
                         </div>
@@ -65,7 +65,7 @@ const ModalForm = {
                             <span v-for="file in dropFiles" style="margin: 0 auto">
                                 <div class="has-text-centered" style="margin: 20px">
                                     <p style="font-weight: bold; margin-bottom: 7px; text-transform: uppercase">{{ $parent.$store.getters.predictions[file.name] }}</p>
-                                    <img :src="getURL(file)"/>
+                                    <img style="width: 200px; height: 150px" :src="getURL(file)"/>
                                 </div>
                             </span>
                         </div>
