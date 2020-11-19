@@ -7,6 +7,7 @@ const state = {
 
 const getters = {
     predictStatus: (state) => state.status,
+    predictions: (state) => state.prediction,
 };
 
 const actions = {

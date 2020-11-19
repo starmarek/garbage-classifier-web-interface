@@ -51,7 +51,7 @@ const ModalForm = {
             <form action="">
                 <div class="modal-card" style="width: auto">
                     <header class="modal-card-head">
-                        <p class="modal-card-title">{{ $parent.$store.getters.predictStatus == 'request' ? 'Predicting your images 🔎' : 'Your predictions 🎉' }}</p>
+                        <p class="modal-card-title">{{ $parent.$store.getters.predictStatus == 'request' ? 'Predicting your images 🔎' : 'Your results 🎉' }}</p>
                     </header>
                     <section class="modal-card-body">
                         <div v-if="$parent.$store.getters.predictStatus == 'request'"  style=" display: flex; flex-direction: row">
@@ -63,7 +63,8 @@ const ModalForm = {
                         </div>
                         <div v-else  style=" display: flex; flex-direction: row">
                             <span v-for="file in dropFiles" style="margin: 0 auto">
-                                <div style="margin: 20px">
+                                <div class="has-text-centered" style="margin: 20px">
+                                    <p style="font-weight: bold; margin-bottom: 7px; text-transform: uppercase">{{ $parent.$store.getters.predictions[file.name] }}</p>
                                     <img :src="getURL(file)"/>
                                 </div>
                             </span>
