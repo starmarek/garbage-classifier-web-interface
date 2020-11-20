@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <section class="hero is-medium has-bg-img">
+        <section class="curtain hero is-medium has-bg-img">
             <div class="hero-body">
                 <div class="has-text-centered upload-box">
                     <p class="title">Upload your photos</p>
@@ -40,13 +40,19 @@
                 </div>
             </div>
         </section>
-        <div class="has-text-centered">
-            <p class="ititle" style="margin: 50px; font-weight: bold; font-size: 200%">
-                Or choose one from our gallery!
-            </p>
-        </div>
+        <div :class="class2"></div>
+        <div :class="class1">
+            <div class="has-text-centered">
+                <p
+                    class="ititle"
+                    style="margin: 50px; font-weight: bold; font-size: 200%"
+                >
+                    Or choose one from our gallery!
+                </p>
+            </div>
 
-        <home-tiles />
+            <home-tiles />
+        </div>
     </div>
 </template>
 
@@ -56,13 +62,33 @@ import HomeTiles from "./HomeTiles";
 
 export default {
     name: "Home",
+    created() {
+        window.addEventListener("scroll", this.handleScroll);
+    },
+    destroyed() {
+        window.removeEventListener("scroll", this.handleScroll);
+    },
     data() {
         return {
             filesDeposit: [],
+            offset: "",
+            class1: "main",
+            class2: "reveal-main",
         };
     },
     components: {
         "home-tiles": HomeTiles,
+    },
+    watch: {
+        offset: function (val) {
+            if (val > 350) {
+                this.class1 = "main active";
+                this.class2 = "reveal-main activetwo";
+            } else {
+                this.class1 = "main";
+                this.class2 = "reveal-main";
+            }
+        },
     },
     computed: {
         dropFiles: {
@@ -75,6 +101,9 @@ export default {
         },
     },
     methods: {
+        handleScroll() {
+            this.offset = window.pageYOffset;
+        },
         submitFiles() {
             try {
                 this.validateFiles();
@@ -138,12 +167,11 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-.home {
-    margin-top: -30pt;
-}
 .has-bg-img {
-    background: url("../assets/home_hero_background.jpg") center center;
+    background: rgba(0, 0, 0, 0.2) url("../assets/home_hero_background.jpg") center
+        center;
     background-size: cover;
+    background-blend-mode: darken;
 }
 .upload-box {
     padding-left: 30px;
@@ -170,5 +198,29 @@ export default {
 img {
     height: 40pt;
     width: 40pt;
+}
+.curtain {
+    height: 90vh;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+.main {
+    position: fixed;
+    bottom: 0;
+    height: 351px;
+    width: 100%;
+}
+
+.reveal-main {
+    height: 351px;
+}
+
+.active {
+    position: relative;
+}
+
+.activetwo {
+    position: absolute;
 }
 </style>

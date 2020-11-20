@@ -49,6 +49,6 @@ export default {
 
 <style scoped lang="scss">
 .navbar {
-    margin-bottom: 30pt;
+    height: 10vh;
 }
 </style>
