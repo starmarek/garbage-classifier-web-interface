@@ -17,7 +17,7 @@
                 >
                     <span v-for="i in dropFiles.length" :key="i" style="margin: 0 auto">
                         <div style="margin: 20px">
-                            <b-skeleton width="200px" height="150px"></b-skeleton>
+                            <b-skeleton width="300px" height="225px"></b-skeleton>
                         </div>
                     </span>
                 </div>
@@ -38,7 +38,7 @@
                                 {{ predictions[file.name] }}
                             </p>
                             <img
-                                style="width: 200px; height: 150px"
+                                style="width: 300px; height: 225px"
                                 :src="getURL(file)"
                             />
                         </div>
