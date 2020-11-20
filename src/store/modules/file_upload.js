@@ -40,6 +40,8 @@ const actions = {
             hasModalCard: true,
             trapFocus: true,
             width: "100%",
+        }).$on("close", () => {
+            commit("updateDropFiles", []);
         });
     },
 };

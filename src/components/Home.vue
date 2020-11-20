@@ -6,7 +6,7 @@
                     <p class="title">Upload your photos</p>
                     <b-upload
                         type="is-primary"
-                        v-model="dropFiles"
+                        v-model="filesDeposit"
                         multiple
                         drag-drop
                         expanded
@@ -20,17 +20,17 @@
                             </div>
                         </section>
                     </b-upload>
-                    <span v-for="(file, index) in dropFiles" :key="index">
+                    <span v-for="(file, index) in filesDeposit" :key="index">
                         <img :src="getURL(file)" />
                         <button
                             class="delete is-small"
                             type="button"
                             style="margin-right: 10px"
-                            @click="deleteDropFile(index)"
+                            @click="deleteFile(index)"
                         ></button>
                     </span>
                     <b-button
-                        :disabled="dropFiles.length ? false : true"
+                        :disabled="filesDeposit.length ? false : true"
                         rounded
                         class="submit-button"
                         type="is-secondary"
@@ -56,6 +56,11 @@ import HomeTiles from "./HomeTiles";
 
 export default {
     name: "Home",
+    data() {
+        return {
+            filesDeposit: [],
+        };
+    },
     components: {
         "home-tiles": HomeTiles,
     },
@@ -76,10 +81,11 @@ export default {
             } catch (e) {
                 return;
             }
+            this.dropFiles = this.filesDeposit;
             this.$store.dispatch("postFiles", this);
         },
-        deleteDropFile(index) {
-            this.dropFiles.splice(index, 1);
+        deleteFile(index) {
+            this.filesDeposit.splice(index, 1);
         },
         getURL(e) {
             return URL.createObjectURL(e);
@@ -87,7 +93,7 @@ export default {
         checkAmount(e) {
             if (e.length > 5) {
                 var to_remove = e.length - 5;
-                this.dropFiles.splice(5, to_remove);
+                this.filesDeposit.splice(5, to_remove);
                 Dialog.alert({
                     title: "Upload Error",
                     message: "You can only upload up to <b>5 images</b> at once",
@@ -103,7 +109,7 @@ export default {
             var file_type_error = false;
             var dialog_message = "";
 
-            for (const file of this.dropFiles) {
+            for (const file of this.filesDeposit) {
                 files_size += file.size;
                 if (file.type == "image/heif") {
                     file_type_error = true;
