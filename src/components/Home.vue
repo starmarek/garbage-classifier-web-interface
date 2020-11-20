@@ -30,11 +30,11 @@
                         ></button>
                     </span>
                     <b-button
-                        :disabled="this.dropFiles.length ? false : true"
+                        :disabled="dropFiles.length ? false : true"
                         rounded
                         class="submit-button"
                         type="is-secondary"
-                        @click="submitUserFiles"
+                        @click="submitFiles()"
                         >Submit</b-button
                     >
                 </div>
@@ -54,49 +54,25 @@
 import { DialogProgrammatic as Dialog } from "buefy";
 import HomeTiles from "./HomeTiles";
 
-const ModalForm = {
-    props: ["dropFiles", "getURL"],
-    template: `
-            <form action="">
-                <div class="modal-card" style="width: auto">
-                    <header class="modal-card-head">
-                        <p class="modal-card-title">{{ $parent.$store.getters.predictStatus == 'request' ? 'Predicting your images 🔎' : 'Your results 🎉' }}</p>
-                    </header>
-                    <section class="modal-card-body">
-                        <div v-if="$parent.$store.getters.predictStatus == 'request'"  style=" display: flex; flex-direction: row">
-                            <span v-for="i in dropFiles.length" :key="i" style="margin: 0 auto">
-                                <div style="margin: 20px">
-                                    <b-skeleton width="200px" height="150px"></b-skeleton>
-                                </div>
-                            </span>
-                        </div>
-                        <div v-else  style=" display: flex; flex-direction: row">
-                            <span v-for="file in dropFiles" style="margin: 0 auto">
-                                <div class="has-text-centered" style="margin: 20px">
-                                    <p style="font-weight: bold; margin-bottom: 7px; text-transform: uppercase">{{ $parent.$store.getters.predictions[file.name] }}</p>
-                                    <img style="width: 200px; height: 150px" :src="getURL(file)"/>
-                                </div>
-                            </span>
-                        </div>
-                    </section>
-                    <footer class="modal-card-foot">
-                        <button class="button" type="button" @click="$emit('close')">Close</button>
-                    </footer>
-                </div>
-            </form>
-        `,
-};
 export default {
     name: "Home",
     components: {
         "home-tiles": HomeTiles,
     },
-    data() {
-        return {
-            dropFiles: [],
-        };
+    computed: {
+        dropFiles: {
+            get() {
+                return this.$store.getters.dropFiles;
+            },
+            set(value) {
+                this.$store.commit("updateDropFiles", value);
+            },
+        },
     },
     methods: {
+        submitFiles() {
+            this.$store.dispatch("postFiles", this);
+        },
         deleteDropFile(index) {
             this.dropFiles.splice(index, 1);
         },
@@ -146,29 +122,6 @@ export default {
                 });
                 throw 1;
             }
-        },
-        submitUserFiles() {
-            try {
-                this.validateFiles();
-            } catch (error) {
-                return;
-            }
-            var fd = new FormData();
-            for (const file_to_append of this.dropFiles) {
-                fd.append(file_to_append.name, file_to_append);
-            }
-            this.$store.dispatch("postFiles", fd);
-            this.$buefy.modal.open({
-                parent: this,
-                props: {
-                    dropFiles: this.dropFiles,
-                    getURL: this.getURL,
-                },
-                component: ModalForm,
-                hasModalCard: true,
-                trapFocus: true,
-                width: "100%",
-            });
         },
     },
 };

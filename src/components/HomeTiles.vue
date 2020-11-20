@@ -82,28 +82,28 @@
 
         <div class="tile is-ancestor">
             <div class="tile is-parent">
-                <article class="tile is-child">
+                <div class="tile is-child">
                     <img
                         style="width: 100%; height: 100%"
                         src="@/assets/tiles_photos/12.jpg"
                     />
-                </article>
+                </div>
             </div>
             <div class="tile is-parent is-6">
-                <article class="tile is-child">
+                <div class="tile is-child">
                     <img
                         style="width: 100%; height: 100%"
                         src="@/assets/tiles_photos/13.jpg"
                     />
-                </article>
+                </div>
             </div>
             <div class="tile is-parent">
-                <article class="tile is-child">
+                <div class="tile is-child">
                     <img
                         style="width: 100%; height: 100%"
                         src="@/assets/tiles_photos/14.jpg"
                     />
-                </article>
+                </div>
             </div>
         </div>
     </section>
