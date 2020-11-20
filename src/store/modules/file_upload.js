@@ -5,7 +5,7 @@ import { ModalProgrammatic as Modal } from "buefy";
 const state = {
     status: "",
     prediction: "",
-    dropFiles: "",
+    dropFiles: [],
 };
 
 const getters = {
