@@ -71,6 +71,11 @@ export default {
     },
     methods: {
         submitFiles() {
+            try {
+                this.validateFiles();
+            } catch (e) {
+                return;
+            }
             this.$store.dispatch("postFiles", this);
         },
         deleteDropFile(index) {
