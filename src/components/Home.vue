@@ -43,6 +43,16 @@
                         @click="submitFiles()"
                         >Submit</b-button
                     >
+                    <b-tooltip class="help-icon" position="is-right">
+                        <template v-slot:content>
+                            <ol>
+                                <li>Only 5 photos at once</li>
+                                <li>Overall size of 20MB</li>
+                                <li>No HEIC files allowed</li>
+                            </ol>
+                        </template>
+                        <b-icon icon="help-circle-outline" size="is-medium"></b-icon>
+                    </b-tooltip>
                 </div>
             </div>
             <div
@@ -238,6 +248,13 @@ export default {
     margin-left: 213px;
     margin-bottom: 20px;
 }
+.help-icon {
+    position: absolute;
+    margin-left: 450px;
+    margin-bottom: 20px;
+    bottom: 0;
+    left: 0;
+}
 img {
     height: 40pt;
     width: 40pt;
@@ -258,7 +275,9 @@ img {
 .reveal-main {
     height: 351px;
 }
-
+ol {
+    padding-left: 1em;
+}
 .active {
     position: relative;
 }

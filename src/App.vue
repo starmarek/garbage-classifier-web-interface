@@ -23,7 +23,7 @@ export default {
 @import "~bulma/sass/utilities/_all";
 @import "@/styles/colors.scss";
 
-// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+// BULMA VARIABLES SECTION
 $colors: (
     "white": (
         $white,
@@ -67,12 +67,11 @@ $colors: (
     ),
 );
 
-// Links
 $link: $primary;
 $link-invert: $primary-invert;
 $link-focus-border: $primary;
+$button-disabled-opacity: 1;
 
-// Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
 </style>

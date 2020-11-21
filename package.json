@@ -13,7 +13,7 @@
   "dependencies": {
     "@mdi/font": "^5.5.55",
     "axios": "^0.18.0",
-    "buefy": "^0.8.20",
+    "buefy": "^0.9.0",
     "git-describe": "^4.0.4",
     "js-cookie": "^2.2.0",
     "node-sass": "^4.14.1",
