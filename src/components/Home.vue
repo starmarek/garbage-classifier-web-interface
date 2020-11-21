@@ -39,18 +39,25 @@
                     >
                 </div>
             </div>
-        </section>
-        <div :class="class2"></div>
-        <div :class="class1">
-            <div class="has-text-centered">
-                <p
-                    class="ititle"
-                    style="margin: 50px; font-weight: bold; font-size: 200%"
-                >
+            <div
+                style="position: relative; top: -50px"
+                class="hero-footer has-text-centered"
+            >
+                <p style="font-size: 150%; color: white; margin-bottom: 20px">
                     Or choose one from our gallery!
                 </p>
+                <b-button
+                    class="pulsingButton"
+                    @click="scrollToTiles()"
+                    size="is-large"
+                    style="margin-bottom: 100px"
+                    icon-left="arrow-down-thick"
+                    rounded
+                ></b-button>
             </div>
-
+        </section>
+        <div :class="class2"></div>
+        <div ref="tiles" style="padding-top: 100px" :class="class1">
             <home-tiles />
         </div>
     </div>
@@ -74,6 +81,7 @@ export default {
             offset: "",
             class1: "main",
             class2: "reveal-main",
+            classChangeHeight: 350,
         };
     },
     components: {
@@ -81,7 +89,7 @@ export default {
     },
     watch: {
         offset: function (val) {
-            if (val > 350) {
+            if (val > this.classChangeHeight) {
                 this.class1 = "main active";
                 this.class2 = "reveal-main activetwo";
             } else {
@@ -132,6 +140,28 @@ export default {
                 });
             }
         },
+        scrollToTiles() {
+            var container = this.$refs.tiles;
+            if (window.pageYOffset > this.classChangeHeight) {
+                container.scrollIntoView({
+                    behavior: "smooth",
+                });
+            } else {
+                window.scrollBy({
+                    top: window.innerHeight,
+                    left: 0,
+                    behavior: "smooth",
+                });
+
+                setTimeout(
+                    () =>
+                        container.scrollIntoView({
+                            behavior: "smooth",
+                        }),
+                    450
+                );
+            }
+        },
         validateFiles() {
             var files_size = 0;
             var file_size_error = false;
@@ -168,7 +198,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .has-bg-img {
-    background: rgba(0, 0, 0, 0.2) url("../assets/home_hero_background.jpg") center
+    background: rgba(0, 0, 0, 0.4) url("../assets/home_hero_background.jpg") center
         center;
     background-size: cover;
     background-blend-mode: darken;
@@ -187,6 +217,10 @@ export default {
     height: 470px;
     max-height: 470px;
     position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 .submit-button {
     position: absolute;
@@ -222,5 +256,44 @@ img {
 
 .activetwo {
     position: absolute;
+}
+.pulsingButton {
+    box-shadow: 0 0 0 0 rgb(248, 248, 248);
+    -webkit-animation: pulsing 2s infinite cubic-bezier(0.66, 0, 0, 1);
+    -moz-animation: pulsing 2s infinite cubic-bezier(0.66, 0, 0, 1);
+    -ms-animation: pulsing 2s infinite cubic-bezier(0.66, 0, 0, 1);
+    animation: pulsing 2s infinite cubic-bezier(0.66, 0, 0, 1);
+    transition: all 300ms ease-in-out;
+}
+
+.pulsingButton:hover {
+    -webkit-animation: none;
+    -moz-animation: none;
+    -ms-animation: none;
+    animation: none;
+}
+
+@-webkit-keyframes pulsing {
+    to {
+        box-shadow: 0 0 0 10px rgba(248, 248, 248, 0);
+    }
+}
+
+@-moz-keyframes pulsing {
+    to {
+        box-shadow: 0 0 0 10px rgba(248, 248, 248, 0);
+    }
+}
+
+@-ms-keyframes pulsing {
+    to {
+        box-shadow: 0 0 0 10px rgba(248, 248, 248, 0);
+    }
+}
+
+@keyframes pulsing {
+    to {
+        box-shadow: 0 0 0 10px rgba(248, 248, 248, 0);
+    }
 }
 </style>
