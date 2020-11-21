@@ -2,6 +2,12 @@
     <div class="home">
         <section class="curtain hero is-medium has-bg-img">
             <div class="hero-body">
+                <div style="float: left; margin-left: 150px" class="content">
+                    <p class="title description">
+                        Sort your waste <br />
+                        via images!
+                    </p>
+                </div>
                 <div class="has-text-centered upload-box">
                     <p class="title">Upload your photos</p>
                     <b-upload
@@ -44,7 +50,7 @@
                 class="hero-footer has-text-centered"
             >
                 <p style="font-size: 150%; color: white; margin-bottom: 20px">
-                    Or choose one from gallery!
+                    Or choose one from gallery
                 </p>
                 <b-button
                     class="pulsingButton"
@@ -259,6 +265,10 @@ img {
 
 .activetwo {
     position: absolute;
+}
+.description {
+    color: #4bd16f;
+    font-size: 400%;
 }
 .pulsingButton {
     box-shadow: 0 0 0 0 rgb(248, 248, 248);
