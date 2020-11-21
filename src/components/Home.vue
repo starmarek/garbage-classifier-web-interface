@@ -44,7 +44,7 @@
                 class="hero-footer has-text-centered"
             >
                 <p style="font-size: 150%; color: white; margin-bottom: 20px">
-                    Or choose one from our gallery!
+                    Or choose one from gallery!
                 </p>
                 <b-button
                     class="pulsingButton"
@@ -58,7 +58,8 @@
         </section>
         <div :class="class2"></div>
         <div ref="tiles" style="padding-top: 100px" :class="class1">
-            <home-tiles />
+            <HomeTiles />
+            <Footer />
         </div>
     </div>
 </template>
@@ -66,6 +67,7 @@
 <script>
 import { DialogProgrammatic as Dialog } from "buefy";
 import HomeTiles from "./HomeTiles";
+import Footer from "./Footer";
 
 export default {
     name: "Home",
@@ -85,7 +87,8 @@ export default {
         };
     },
     components: {
-        "home-tiles": HomeTiles,
+        HomeTiles,
+        Footer,
     },
     watch: {
         offset: function (val) {

@@ -1,5 +1,5 @@
 <template>
-    <section class="container">
+    <section style="margin-bottom: 100px" class="container">
         <div class="tile is-ancestor">
             <div class="tile is-parent">
                 <div class="tile is-child">

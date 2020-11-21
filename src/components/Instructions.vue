@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>This is an about page</h1>
+        <h1>This is instructions page</h1>
         <Footer />
     </div>
 </template>
@@ -8,7 +8,7 @@
 import Footer from "./Footer";
 
 export default {
-    name: "About",
+    name: "Instructions",
     components: {
         Footer,
     },

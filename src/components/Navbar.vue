@@ -10,7 +10,7 @@
                 <b-icon :style="{ margin: '6px' }" icon="information-outline" />
                 <p class="is-unselectable">About</p>
             </b-navbar-item>
-            <b-navbar-item :to="{ path: '/about' }" tag="router-link">
+            <b-navbar-item :to="{ path: '/instructions' }" tag="router-link">
                 <b-icon :style="{ margin: '6px' }" icon="book-open-outline" />
                 <p class="is-unselectable">Instructions</p>
             </b-navbar-item>
