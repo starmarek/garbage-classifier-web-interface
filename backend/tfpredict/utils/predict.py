@@ -4,7 +4,7 @@ import backend.settings as sett
 
 from .load_files import create_files_batch
 
-CLASSES = ["glass", "metal", "organic", "paper", "plastic"]
+CLASSES = ["glass 🟢🗑️", "metal 🟡🗑️", "organic 🟤🗑️", "paper 🔵🗑️", "plastic 🟡🗑️"]
 
 
 def predict_files(directory):
