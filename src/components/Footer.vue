@@ -26,11 +26,11 @@
                     </a>
                 </div>
                 <div style="display: flex; flex-direction: column; margin-left: 500px">
-                    <a
+                    <router-link
                         style="margin: 5px"
                         v-bind:class="{ isOn: this.$route.path == '/' }"
-                        href="#"
-                        >Home</a
+                        to="/"
+                        >Home</router-link
                     >
                     <router-link
                         style="margin: 5px"
