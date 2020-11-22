@@ -53,18 +53,13 @@
                             height="120px"
                             src="@/assets/pwr.jpg"
                         />
-                        <b-icon
-                            style="color: pink"
-                            size="is-medium"
-                            icon="heart"
-                        ></b-icon>
+                        <b-icon size="is-medium" icon="arrow-left-right-bold"></b-icon>
 
-                        <img
-                            style="margin-left: 50px"
-                            width="150px"
-                            height="150px"
-                            src="@/assets/recycle.jpg"
-                        />
+                        <b-icon
+                            size="is-large"
+                            style="color: #4bd16f; margin-left: 50px"
+                            icon="recycle"
+                        ></b-icon>
                     </div>
                 </div>
                 <div class="has-text-centered" style="padding-top: 6%">
@@ -153,16 +148,75 @@
                 </div>
             </div>
         </section>
-        <section>
+        <section style="height: 60vh">
             <parallax fixed>
-                <img src="@/assets/parallax1.jpg" />
+                <img src="@/assets/parallax.jpg" />
             </parallax>
         </section>
         <section style="padding-top: 5%; background-color: white">
             <div style="padding-bottom: 5%" class="container">
-                <p style="margin-bottom: 50px; font-size: 250%">
-                    About <span style="color: #4bd16f">author</span>
-                </p>
+                <div class="level">
+                    <div class="level-left" v-scroll-reveal.reset="{ delay: 400 }">
+                        <img width="250px" src="@/assets/author.jpg" />
+                    </div>
+                    <div style="margin-left: 10%">
+                        <p style="margin-bottom: 50px; font-size: 250%">
+                            About <span style="color: #4bd16f">author</span>
+                        </p>
+                        <p style="width: 80%; font-size: 140%">
+                            Aleksander Pucher is a soon-to-be graduate of Wroclaw
+                            University of Science at a Control Engineering faculty.
+                            Daily he is working as a Software Engineer at Nokia. In his
+                            free time he enjoys road biking and swimming.
+                        </p>
+                        <div
+                            style="
+                                display: flex;
+                                flex-direction: row;
+                                margin-top: 7%;
+                                font-size: 150%;
+                                text-decoration: underline;
+                            "
+                        >
+                            <div
+                                class="has-text-centered"
+                                style="margin-right: 30%; margin-left: 7%"
+                            >
+                                <p>Social media</p>
+                                <a
+                                    href="https://www.facebook.com/aleksander.pucher/"
+                                    target="_blank"
+                                >
+                                    <b-icon
+                                        style="margin-top: 10%"
+                                        size="is-medium"
+                                        icon="facebook"
+                                    ></b-icon>
+                                </a>
+                                <a
+                                    href="https://www.linkedin.com/in/aleksander-pucher"
+                                    target="_blank"
+                                >
+                                    <b-icon
+                                        style="margin-top: 10%; margin-left: 10%"
+                                        size="is-medium"
+                                        icon="linkedin"
+                                    ></b-icon>
+                                </a>
+                            </div>
+                            <div class="has-text-centered">
+                                <p>Projects</p>
+                                <a href="https://github.com/starmarek" target="_blank">
+                                    <b-icon
+                                        style="margin-top: 10%"
+                                        size="is-medium"
+                                        icon="github"
+                                    ></b-icon>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <p style="font-size: 150%"></p>
             </div>
         </section>
@@ -207,18 +261,6 @@ li {
     font-size: 150%;
     margin-left: 5%;
     list-style-type: square;
-}
-.Masthead__image.is-parallax {
-    left: 0;
-    position: absolute;
-    will-change: transform;
-    right: 0;
-    top: 0;
-}
-.Masthead__image {
-    width: 100%;
-    overflow: hidden;
-    height: 120%;
 }
 a {
     color: rgb(79, 79, 235);
