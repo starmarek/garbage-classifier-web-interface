@@ -15,7 +15,7 @@
                     />
                 </transition>
             </div>
-            <div class="level-right" style="margin-right: 200px; margin-top: 100px">
+            <div class="level-right" style="margin-right: 5%; margin-top: 100px">
                 <p style="font-size: 400%">
                     Average person <br />
                     produce 2kg of waste <br />
@@ -56,7 +56,7 @@
                 <div
                     style="margin-top: 50px"
                     class="level-right"
-                    v-scroll-reveal.reset="{ delay: 350 }"
+                    v-scroll-reveal.reset="{ delay: 1000 }"
                 >
                     <a href="https://pwr.edu.pl/" target="_blank">
                         <img
@@ -92,6 +92,7 @@ export default {
     },
     mounted() {
         this.show = true;
+        window.scrollTo(0, 0);
     },
     beforeDestroy() {
         console.log("dupa2");
@@ -116,6 +117,7 @@ export default {
 }
 li {
     font-size: 150%;
+    margin-left: 5%;
     list-style-type: square;
 }
 

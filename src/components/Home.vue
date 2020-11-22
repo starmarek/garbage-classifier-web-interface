@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div
-                style="position: relative; top: -50px"
+                style="position: relative; top: -15%"
                 class="hero-footer has-text-centered"
             >
                 <p style="font-size: 150%; color: white; margin-bottom: 20px">
@@ -92,6 +92,9 @@ export default {
     },
     destroyed() {
         window.removeEventListener("scroll", this.handleScroll);
+    },
+    mounted() {
+        window.scrollTo(0, 0);
     },
     data() {
         return {
