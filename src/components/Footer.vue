@@ -78,7 +78,7 @@ export default {
 
 <style>
 .footer {
-    background-color: rgba(49, 49, 49, 0.726);
+    background-color: rgb(66, 65, 65);
 }
 .isOn {
     color: white;
