@@ -1,58 +1,65 @@
 <template>
     <div class="home">
-        <section class="curtain is-medium has-bg-img">
-            <div class="level">
-                <div style="margin-left: 5%; margin-bottom: 10%">
-                    <p class="title description">
-                        Sort your waste <br />
-                        via images!
-                    </p>
-                </div>
-                <div class="has-text-centered upload-box">
-                    <p class="title">Upload your photos</p>
-                    <b-upload
-                        type="is-primary"
-                        v-model="filesDeposit"
-                        multiple
-                        drag-drop
-                        expanded
-                        style="padding-bottom: 30px"
-                        @input="checkAmount"
-                    >
-                        <section class="section">
-                            <div class="content has-text-centered">
-                                <b-icon icon="upload" size="is-large"> </b-icon>
-                                <p>Drag and drop or click</p>
-                            </div>
-                        </section>
-                    </b-upload>
-                    <span v-for="(file, index) in filesDeposit" :key="index">
-                        <img :src="getURL(file)" />
-                        <button
-                            class="delete is-small"
-                            type="button"
-                            style="margin-right: 10px"
-                            @click="deleteFile(index)"
-                        ></button>
-                    </span>
-                    <b-button
-                        :disabled="filesDeposit.length ? false : true"
-                        rounded
-                        class="submit-button"
-                        type="is-secondary"
-                        @click="submitFiles()"
-                        >Submit</b-button
-                    >
-                    <b-tooltip class="help-icon" position="is-right">
-                        <template v-slot:content>
-                            <ol>
-                                <li>Only 5 photos at once</li>
-                                <li>Overall size of 20MB</li>
-                                <li>No HEIC files allowed</li>
-                            </ol>
-                        </template>
-                        <b-icon icon="help-circle-outline" size="is-medium"></b-icon>
-                    </b-tooltip>
+        <section class="curtain has-bg-img">
+            <div class="center-vert" style="width: 100%">
+                <div class="level">
+                    <div style="margin-bottom: 30vh; margin-left: 10vh">
+                        <p class="title description">
+                            Sort your waste <br />
+                            via images!
+                        </p>
+                    </div>
+                    <div class="has-text-centered upload-box">
+                        <p style="font-weight: bold" class="title">
+                            Upload your photos
+                        </p>
+                        <b-upload
+                            type="is-primary"
+                            v-model="filesDeposit"
+                            multiple
+                            drag-drop
+                            expanded
+                            style="padding-bottom: 30px"
+                            @input="checkAmount"
+                        >
+                            <section class="section">
+                                <div class="content has-text-centered">
+                                    <b-icon icon="upload" size="is-large"> </b-icon>
+                                    <p>Drag and drop or click</p>
+                                </div>
+                            </section>
+                        </b-upload>
+                        <span v-for="(file, index) in filesDeposit" :key="index">
+                            <img :src="getURL(file)" />
+                            <button
+                                class="delete is-small"
+                                type="button"
+                                style="margin-right: 10px"
+                                @click="deleteFile(index)"
+                            ></button>
+                        </span>
+                        <b-button
+                            :disabled="filesDeposit.length ? false : true"
+                            rounded
+                            class="submit-button"
+                            type="is-secondary"
+                            @click="submitFiles()"
+                            >Submit</b-button
+                        >
+                        <b-tooltip class="help-icon" position="is-right">
+                            <template v-slot:content>
+                                <ol>
+                                    <li>Only 5 photos at once</li>
+                                    <li>Overall size of 20MB</li>
+                                    <li>No HEIC files allowed</li>
+                                </ol>
+                            </template>
+                            <b-icon
+                                icon="help-circle-outline"
+                                size="is-medium"
+                            ></b-icon>
+                        </b-tooltip>
+                    </div>
                 </div>
             </div>
             <div class="has-text-centered scroll-arrow">
@@ -222,13 +229,12 @@ export default {
 }
 .upload-box {
     padding: 2%;
-    margin-right: 10%;
+    margin-right: 15vh;
     border-radius: 25px;
     background-color: white;
     width: 500px;
     height: 470px;
     position: relative;
-    margin-top: 7%;
 }
 .scroll-arrow {
     position: absolute;
@@ -283,7 +289,15 @@ ol {
 }
 .description {
     color: #4bd16f;
-    font-size: 400%;
+    font-size: 8vh;
+    font-weight: bold;
+}
+.center-vert {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
 }
 .pulsingButton {
     box-shadow: 0 0 0 0 rgb(248, 248, 248);
