@@ -87,6 +87,7 @@ deploy:
     script:
         - ssh $PROD_SERVER_USER@$PROD_SERVER_IP "docker-compose -f garbage/docker-compose.prod.yml down --rmi all && docker volume rm garbage_static_files || true"
         - ssh $PROD_SERVER_USER@$PROD_SERVER_IP "rm -rf garbage/ || true"
+        - ssh $PROD_SERVER_USER@$PROD_SERVER_IP "docker system prune -f"
         - rsync -azvh . $PROD_SERVER_USER@$PROD_SERVER_IP:garbage/
         - ssh $PROD_SERVER_USER@$PROD_SERVER_IP "cp .env garbage/ && docker-compose -f garbage/docker-compose.prod.yml build --force-rm --no-cache && docker-compose -f garbage/docker-compose.prod.yml up -d --remove-orphans"
     when: manual
