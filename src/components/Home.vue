@@ -1,8 +1,8 @@
 <template>
     <div class="home">
-        <section class="curtain hero is-medium has-bg-img">
-            <div class="hero-body">
-                <div style="float: left; margin-left: 150px" class="content">
+        <section class="curtain is-medium has-bg-img">
+            <div class="level">
+                <div style="margin-left: 5%; margin-bottom: 10%">
                     <p class="title description">
                         Sort your waste <br />
                         via images!
@@ -55,18 +55,13 @@
                     </b-tooltip>
                 </div>
             </div>
-            <div
-                style="position: relative; top: -15%"
-                class="hero-footer has-text-centered"
-            >
-                <p style="font-size: 150%; color: white; margin-bottom: 20px">
-                    Or choose one from gallery
-                </p>
+            <div class="has-text-centered scroll-arrow">
+                <p style="font-size: 150%; color: white">Or choose one from gallery</p>
                 <b-button
+                    style="margin-top: 3%"
                     class="pulsingButton"
                     @click="scrollToTiles()"
                     size="is-large"
-                    style="margin-bottom: 100px"
                     icon-left="arrow-down-thick"
                     rounded
                 ></b-button>
@@ -226,23 +221,21 @@ export default {
     background-blend-mode: darken;
 }
 .upload-box {
-    padding-left: 30px;
-    padding-right: 30px;
-    margin-right: 12%;
-    padding-top: 60px;
-    padding-bottom: 30px;
+    padding: 2%;
+    margin-right: 10%;
     border-radius: 25px;
-    float: right;
     background-color: white;
     width: 500px;
-    max-width: 500px;
     height: 470px;
-    max-height: 470px;
     position: relative;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+    margin-top: 7%;
+}
+.scroll-arrow {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-left: 43%;
+    margin-bottom: 2%;
 }
 .submit-button {
     position: absolute;
