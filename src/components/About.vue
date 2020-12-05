@@ -1,7 +1,7 @@
 <template>
     <div>
         <section style="background-color: white">
-            <div class="level container" style="height: 90vh">
+            <div class="level container" style="height: 93vh">
                 <div style="perspective: 1500px" class="level-left">
                     <transition name="slide-fade">
                         <img

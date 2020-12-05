@@ -262,7 +262,7 @@ img {
     width: 40pt;
 }
 .curtain {
-    height: 90vh;
+    height: 93vh;
     position: relative;
     z-index: 2;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.1);

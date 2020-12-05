@@ -2,7 +2,7 @@
     <b-navbar>
         <template slot="brand">
             <b-navbar-item :to="{ path: '/' }" tag="router-link">
-                <img src="@/assets/logo_text.png" :style="{ minHeight: '70px' }" />
+                <img src="@/assets/logo_text.png" class="logo" />
             </b-navbar-item>
         </template>
         <template slot="start">
@@ -45,6 +45,9 @@ export default {
 
 <style scoped lang="scss">
 .navbar {
-    height: 10vh;
+    height: 7vh;
+}
+.logo {
+    max-height: 50px;
 }
 </style>
