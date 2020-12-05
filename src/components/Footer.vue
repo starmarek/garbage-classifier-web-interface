@@ -38,12 +38,6 @@
                         to="/about"
                         >About</router-link
                     >
-                    <router-link
-                        style="margin: 5px"
-                        v-bind:class="{ isOn: this.$route.path == '/instructions' }"
-                        to="/instructions"
-                        >Instructions</router-link
-                    >
                 </div>
             </div>
             <div class="level-left">
