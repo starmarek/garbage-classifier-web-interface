@@ -182,7 +182,7 @@ export default {
                         container.scrollIntoView({
                             behavior: "smooth",
                         }),
-                    500
+                    600
                 );
             }
         },
