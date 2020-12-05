@@ -3,7 +3,7 @@
         <section class="curtain has-bg-img">
             <div class="center-vert" style="width: 100%">
                 <div class="level">
-                    <div style="margin-bottom: 30vh; margin-left: 10vh">
+                    <div style="margin-bottom: 40vh; margin-left: 10vh">
                         <p class="title description">
                             Sort your waste <br />
                             via images!
@@ -46,7 +46,7 @@
                             @click="submitFiles()"
                             >Submit</b-button
                         >
-                        <b-tooltip class="help-icon" position="is-right">
+                        <b-tooltip class="help-icon" position="is-top">
                             <template v-slot:content>
                                 <ol>
                                     <li>Only 5 photos at once</li>
@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="has-text-centered scroll-arrow">
-                <p style="font-size: 150%; color: white">Or choose one from gallery</p>
+                <p style="font-size: 2vh; color: white">Or choose one from gallery</p>
                 <b-button
                     style="margin-top: 3%"
                     class="pulsingButton"
@@ -258,8 +258,8 @@ export default {
     left: 0;
 }
 img {
-    height: 40pt;
-    width: 40pt;
+    height: 42px;
+    width: 42px;
 }
 .curtain {
     height: 93vh;
