@@ -1,11 +1,8 @@
 <template>
     <div>
         <section style="background-color: white">
-            <div class="level" style="margin-bottom: 300px">
-                <div
-                    style="perspective: 1500px; margin-top: 150px; margin-left: 150px"
-                    class="level-left"
-                >
+            <div class="level container" style="height: 90vh">
+                <div style="perspective: 1500px" class="level-left">
                     <transition name="slide-fade">
                         <img
                             class="perspective"
@@ -16,7 +13,7 @@
                         />
                     </transition>
                 </div>
-                <div class="level-right" style="margin-right: 5%; margin-top: 100px">
+                <div class="level-right" style="margin-left: 10%">
                     <p style="font-size: 400%">
                         Average person <br />
                         produce 2kg of waste <br />
